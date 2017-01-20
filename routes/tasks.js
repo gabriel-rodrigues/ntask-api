@@ -31,7 +31,7 @@ module.exports = app => {
                     res.json(result);
                 }
                 else {
-                    res.sendStatus(401);
+                    res.sendStatus(404);
                 }
             })
           .catch(erro => res.status(412).json({ msg: erro.message }));

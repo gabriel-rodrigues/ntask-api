@@ -5,7 +5,7 @@ module.exports = {
   password: "",
   params: {
     dialect: "sqlite",
-    storage: "ntask_test.sqlite",
+    storage: "ntask.sqlite",
     logging: false,
     define: {
        underscored: true

@@ -8,13 +8,18 @@ module.exports = app => {
    app.route("/user")
       .all(app.auth.authenticate())
       .get((req, res) => {
-       Users.findById(req.params.id, {
-           attributes: ["id", "name", "email"]
-       })
-       .then(result => res.json(result))
-       .catch(erro => {
-           res.status(412).json({ msg: error.message });
-       });
+         Users.findById(req.user.id, {
+             attributes: ["id", "name", "email"]
+         })
+         .then(result => {
+            if(result) {
+                res.json(result);
+            }
+            else {
+              res.sendStatus(404);
+            }
+         })
+         .catch(erro => res.status(412).json({ msg: erro.message }));
     })
       .delete((req, res) => {
       Users.destroy({ where: req.params})
